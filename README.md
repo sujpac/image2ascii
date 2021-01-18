@@ -1,4 +1,4 @@
-# :milky_way: Image2Ascii
+# :moon: Image2Ascii
 
 Image2Ascii is a Python script that converts your favorite image into corresponding ASCII art.
 
@@ -8,7 +8,7 @@ Image2Ascii is a Python script that converts your favorite image into correspond
 git clone https://github.com/sujpac/image2ascii.git
 cd image2ascii
 sudo python3 -m install Pillow
-python3 main.py -f [image.jpg]
+python3 image2ascii.py -i <image.jpg>
 ```
 
 ## Command-Line Usage
