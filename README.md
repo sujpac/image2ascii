@@ -1,4 +1,4 @@
-# :boom: Image2Ascii
+# :pencil: Image2Ascii
 
 Image2Ascii is a Python script that converts your favorite image into corresponding ASCII art.
 
@@ -8,12 +8,12 @@ Image2Ascii is a Python script that converts your favorite image into correspond
 git clone https://github.com/sujpac/image2ascii.git
 cd image2ascii
 sudo python3 -m pip install Pillow
-python3 image2ascii.py -i <image.jpg>
+python3 main.py -i <image.jpg>
 ```
 
 ## Command-Line Usage
 ```bash
-Usage: python3 image2ascii.py [-f] -i <image_file>
+Usage: python3 main.py [-f] -i <image_file>
 
 Options:
   -f        Fit ASCII output to terminal window (default True)
