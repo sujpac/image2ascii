@@ -1,7 +1,7 @@
 from PIL import Image
 
 # Load image using Pillow
-img = Image.open('plane.jpg')
+img = Image.open('images/plane.jpg')
 width, height = img.size # 640x480
 width, height = width // 4, height // 4
 img = img.resize((width, height))

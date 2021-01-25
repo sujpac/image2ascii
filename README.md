@@ -22,5 +22,10 @@ Options:
             Filename of image to be converted into ASCII art (default 'docs/images/plane.jpg')
 ```
 
+## Example Output
+![plane](https://github.com/sujpac/image2ascii/blob/main/images/plane.jpg?raw=true)
+
+![ascii plane](https://github.com/sujpac/image2ascii/blob/main/images/plane_ascii.png?raw=true)
+
 ## License
 This project is under the MIT License. See the [LICENSE](https://github.com/sujpac/image2ascii/blob/main/LICENSE) file for the full license text.
