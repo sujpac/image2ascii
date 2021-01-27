@@ -19,7 +19,7 @@ Options:
   -f        Fit ASCII output to terminal window (default True)
   -c        Colorful ASCII output (default False)
   -i string
-            Filename of image to be converted into ASCII art (default 'docs/images/plane.jpg')
+            Filename of image to be converted into ASCII art (default 'images/plane.jpg')
 ```
 
 ## Example Output
