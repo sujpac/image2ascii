@@ -12,8 +12,7 @@ width, height = 0, 0
 
 def load_image(filename='images/plane.jpg') -> Image:
     img = Image.open(filename)
-    global width
-    global height
+    global width, height
     width, height = img.size  # plane.jpg is 640 x 480
     # Reduce image size 16x to ensure fit on terminal screen
     width, height = width // 4, height // 4
@@ -68,12 +67,27 @@ def get_pixel_brightness_matrix(pixel_matrix):
     return pixel_brightness_matrix
 
 
-def get_ascii_matrix(pixel_brightness_matrix):
+def normalize_brightness_matrix(brightness_matrix):
+    normalized_brightness_matrix = []
+    min_pixel = min(map(min, brightness_matrix))
+    max_pixel = max(map(max, brightness_matrix))
+    brightness_range = float(max_pixel - min_pixel)
+    for row in brightness_matrix:
+        normalized_row = []
+        for p in row:
+            new_p = MAX_PIXEL_VALUE * ((p - min_pixel) / brightness_range)
+            normalized_row.append(new_p)
+        normalized_brightness_matrix.append(normalized_row)
+
+    return normalized_brightness_matrix
+
+
+def get_ascii_matrix(brightness_matrix):
     ascii_matrix = [[None] * width for _ in range(height)]
 
     for x in range(height):
         for y in range(width):
-            idx = round((pixel_brightness_matrix[x][y] / MAX_PIXEL_VALUE) * len(ASCII_CHARS))
+            idx = round((brightness_matrix[x][y] / MAX_PIXEL_VALUE) * len(ASCII_CHARS))
             idx -= 1 if idx >= 1 else 0
             ascii_matrix[x][y] = ASCII_CHARS[idx]
     # print('Successfully constructed ascii character matrix. First row:')
@@ -84,8 +98,8 @@ def get_ascii_matrix(pixel_brightness_matrix):
 def print_ascii_art(ascii_matrix):
     for x in range(height):
         for y in range(width):
-            # Print the char 3x times since the height of terminal characters
-            # is 3 times the width. Doing 2x here to reasonably fit the screen.
+            # The height of terminal characters is 3 times the width.
+            # So print the char 2x or 3x times to reasonably fit the screen.
             char = ascii_matrix[x][y]
             print(char+char, sep='', end='')
         print()
@@ -96,8 +110,12 @@ def main():
     img = load_image('images/plane.jpg')
     # Load the image's pixel data into a 2D array
     pixel_matrix = get_pixel_matrix(img)
+
     # Now convert the RGB tuple (pixel) matrix into a pixel brightness matrix
     pixel_brightness_matrix = get_pixel_brightness_matrix(pixel_matrix)
+    # Normalize the pixel brightness values
+    pixel_brightness_matrix = normalize_brightness_matrix(pixel_brightness_matrix)
+
     # Now convert the pixel brightness matrix to an ascii character matrix
     ascii_matrix = get_ascii_matrix(pixel_brightness_matrix)
     # Print ascii art to the terminal
